@@ -1,0 +1,60 @@
+
+[
+  {
+    "problemStatement": "Given an array of integers, find the length of the longest increasing subsequence (LIS).",
+    "code": "function longestIncreasingSubsequence(nums) {  \n  if (nums.length === 0) {  \n    return 0;  \n  }  \n  const dp = new Array(nums.length).fill(1);  \n  let maxLength = 1;  \n  for (let i = 1; i < nums.length; i++) {  \n    for (let j = 0; j < i; j++) {  \n      if (nums[i] > nums[j] && dp[i] < dp[j] + 1) {  \n        dp[i] = dp[j] + 1;  \n      }  \n    }  \n    maxLength = Math.max(maxLength, dp[i]);  \n  }  \n  return maxLength;  \n}",
+    "testCases": [
+      {
+        "input": [10, 9, 2, 5, 3, 7, 101, 18],
+        "output": 4
+      },
+      {
+        "input": [0, 1, 0, 3, 2, 3],
+        "output": 4
+      },
+      {
+        "input": [4, 10, 4, 3, 8, 9],
+        "output": 3
+      }
+    ],
+    "validationScript": "function validate(input, expectedOutput, actualOutput) {  \n  if (actualOutput === expectedOutput) {  \n    return true;  \n  } else {  \n    console.error(`Test failed for input: ${input}, expected: ${expectedOutput}, actual: ${actualOutput}`);  \n    return false;  \n  }  \n}  \n  \nconst testCases = [  \n  {  \n    input: [10, 9, 2, 5, 3, 7, 101, 18],  \n    expectedOutput: 4  \n  },  \n  {  \n    input: [0, 1, 0, 3, 2, 3],  \n    expectedOutput: 4  \n  },  \n  {  \n    input: [4, 10, 4, 3, 8, 9],  \n    expectedOutput: 3  \n  }  \n];  \n  \nlet allTestsPassed = true;  \n  \ntestCases.forEach(testCase => {  \n  const actualOutput = longestIncreasingSubsequence(testCase.input);  \n  allTestsPassed = allTestsPassed && validate(testCase.input, testCase.expectedOutput, actualOutput);  \n});  \n  \nif (allTestsPassed) {  \n  console.log('All tests passed!');  \n} else {  \n  console.error('Some tests failed.');  \n}"
+  },
+  {
+    "problemStatement": "Implement a function that takes a string as input and returns a new string with all the vowels removed.",
+    "code": "function removeVowels(str) {  \n  return str.replace(/[aeiouAEIOU]/g, '');  \n}",
+    "testCases": [
+      {
+        "input": "This is a test string.",
+        "output": "Ths s  tst strng."
+      },
+      {
+        "input": "aeiouAEIOU",
+        "output": ""
+      },
+      {
+        "input": "Hello World!",
+        "output": "Hll Wrld!"
+      }
+    ],
+    "validationScript": "function validate(input, expectedOutput, actualOutput) {  \n  if (actualOutput === expectedOutput) {  \n    return true;  \n  } else {  \n    console.error(`Test failed for input: ${input}, expected: ${expectedOutput}, actual: ${actualOutput}`);  \n    return false;  \n  }  \n}  \n  \nconst testCases = [  \n  {  \n    input: 'This is a test string.',  \n    expectedOutput: 'Ths s  tst strng.'  \n  },  \n  {  \n    input: 'aeiouAEIOU',  \n    expectedOutput: ''  \n  },  \n  {  \n    input: 'Hello World!',  \n    expectedOutput: 'Hll Wrld!'  \n  }  \n];  \n  \nlet allTestsPassed = true;  \n  \ntestCases.forEach(testCase => {  \n  const actualOutput = removeVowels(testCase.input);  \n  allTestsPassed = allTestsPassed && validate(testCase.input, testCase.expectedOutput, actualOutput);  \n});  \n  \nif (allTestsPassed) {  \n  console.log('All tests passed!');  \n} else {  \n  console.error('Some tests failed.');  \n}"
+  },
+  {
+    "problemStatement": "Implement a function that takes an array of strings as input and returns a new array containing only the strings that are palindromes.",
+    "code": "function findPalindromes(arr) {  \n  return arr.filter(str => {  \n    const reversedStr = str.split('').reverse().join('');  \n    return str === reversedStr;  \n  });  \n}",
+    "testCases": [
+      {
+        "input": ["racecar", "level", "hello", "world", "madam"],
+        "output": ["racecar", "level", "madam"]
+      },
+      {
+        "input": ["apple", "banana", "civic", "deified", "kayak"],
+        "output": ["civic", "deified", "kayak"]
+      },
+      {
+        "input": ["a", "aa", "aaa", "aaaa"],
+        "output": ["a", "aa", "aaa", "aaaa"]
+      }
+    ],
+    "validationScript": "function validate(input, expectedOutput, actualOutput) {  \n  if (actualOutput.length === expectedOutput.length &&  \n    actualOutput.every((value, index) => value === expectedOutput[index])) {  \n    return true;  \n  } else {  \n    console.error(`Test failed for input: ${input}, expected: ${expectedOutput}, actual: ${actualOutput}`);  \n    return false;  \n  }  \n}  \n  \nconst testCases = [  \n  {  \n    input: ['racecar', 'level', 'hello', 'world', 'madam'],  \n    expectedOutput: ['racecar', 'level', 'madam']  \n  },  \n  {  \n    input: ['apple', 'banana', 'civic', 'deified', 'kayak'],  \n    expectedOutput: ['civic', 'deified', 'kayak']  \n  },  \n  {  \n    input: ['a', 'aa', 'aaa', 'aaaa'],  \n    expectedOutput: ['a', 'aa', 'aaa', 'aaaa']  \n  }  \n];  \n  \nlet allTestsPassed = true;  \n  \ntestCases.forEach(testCase => {  \n  const actualOutput = findPalindromes(testCase.input);  \n  allTestsPassed = allTestsPassed && validate(testCase.input, testCase.expectedOutput, actualOutput);  \n});  \n  \nif (allTestsPassed) {  \n  console.log('All tests passed!');  \n} else {  \n  console.error('Some tests failed.');  \n}"
+  }
+]
